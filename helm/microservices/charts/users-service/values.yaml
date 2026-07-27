@@ -1,7 +1,7 @@
 image:
   repository: 490059499947.dkr.ecr.us-east-1.amazonaws.com/dev-users-service
   tag: v1
-  pullpolicy: IfNotPresent
+  pullPolicy: IfNotPresent
 
 replicaCount: 2
 
