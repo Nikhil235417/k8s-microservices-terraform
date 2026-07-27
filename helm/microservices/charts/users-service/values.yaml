@@ -5,7 +5,7 @@ image:
 
 replicaCount: 2
 
-Service:
+service:
   port: 80
   targetPort: 8000
 
