@@ -7,3 +7,9 @@ dependencies:
   - name: users-service
     version: 0.1.0
     repository: "file://charts/users-service"
+  - name: orders-service
+    version: 0.1.0
+    repository: "file://charts/orders-service"
+  - name: products-service
+    version: 0.1.0
+    repository: "file://charts/products-service"
