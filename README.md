@@ -19,7 +19,37 @@ The current implementation contains:
 - A private Amazon RDS PostgreSQL 16.3 instance with 20 GiB of `gp3` storage.
 - A remote Terraform backend in S3 with DynamoDB locking.
 
-The infrastructure foundation is ready to host microservices, but this repository does not yet include Kubernetes manifests, Helm charts, application images, a CI/CD pipeline, an application load balancer, or observability configuration.
+The infrastructure foundation is ready to host microservices, and the application layer is already running in the `dev` namespace. The current deployment includes three microservices exposed as Kubernetes services:
+
+- `users-service`
+- `orders-service`
+- `products-service`
+
+Each service has one running pod, and they are currently reachable through local port-forwarding because no Ingress resource is configured yet.
+
+## Current application deployment
+
+The current runtime state was verified with `kubectl get svc,pods -n dev` and shows:
+
+- Three `ClusterIP` services in the `dev` namespace.
+- One running pod for each service.
+- No Ingress resources found, so external access is not yet exposed through a public endpoint.
+
+### Access locally
+
+To access the `products-service` locally, run:
+
+```bash
+kubectl port-forward svc/products-service -n dev 8000:80
+```
+
+Then open:
+
+```text
+http://127.0.0.1:8000/
+```
+
+The same pattern applies to the other services by replacing `products-service` with `users-service` or `orders-service`.
 
 ## Architecture
 
