@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - feature/*
     paths:
       - 'apps/users-service/**'
       - '.github/workflows/users-service.build.yaml'
