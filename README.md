@@ -53,6 +53,26 @@ The same pattern applies to the other services by replacing `products-service` w
 
 ## Architecture
 
+## CI/CD and image builds
+
+This repository includes a GitHub Actions workflow that builds and pushes container images for the `users-service` into Amazon ECR. The workflow file is located at `.github/workflows/users-service-build.yml` and is triggered on pushes to `master` and `feature/**` when changes under `apps/users-service/**` are detected (or via manual dispatch).
+
+Key points about the workflow:
+
+- Region: `us-east-1` (set in the workflow environment).
+- ECR repository name: `dev-users-service`.
+- Trigger: `push` on branches `master` and `feature/**`, and `workflow_dispatch` for manual runs.
+- Authentication: the workflow uses the `aws-actions/configure-aws-credentials@v4` action and assumes an IAM role via the secret `AWS_ROLE_ARN` (GitHub OIDC + role assumption).
+- Build and push steps: Docker image is built from `apps/users-service/`, tagged with the short commit SHA (`${{ github.sha }}`) and pushed to ECR. The pushed image URI is exposed in the job environment as `IMAGE`.
+
+Required repository secrets and configuration:
+
+- `AWS_ROLE_ARN`: ARN of the IAM role GitHub Actions should assume. The role must trust the GitHub OIDC provider and allow ECR push permissions.
+- The AWS account must have an OIDC provider configured for `token.actions.githubusercontent.com` and a role with policies to push to ECR and assume the role from GitHub Actions.
+
+If you add CI workflows for the other services (`orders-service`, `products-service`), follow the same pattern: create a workflow file under `.github/workflows/`, set the `ECR_REPOSITORY` env var (e.g., `dev-orders-service`), and ensure the IAM role and secrets are available.
+
+
 ```mermaid
 flowchart TB
 		developer[Developer / Terraform CLI]
@@ -160,23 +180,38 @@ The database is created with identifier `dev-postgres-db`, logical name `app_db`
 
 `skip_final_snapshot = true` makes it easier to destroy the development environment, but it is not suitable for production because it allows the instance to be deleted without a final snapshot.
 
+
 ## Repository structure
+
+The repository layout (current) is:
 
 ```text
 .
+├── .github/
+│   └── workflows/
+│       ├── users-service-build.yml
+│       ├── products-service-build.yml
+│       └── orders-service-build.yml
+├── apps/
+│   ├── users-service/
+│   ├── products-service/
+│   └── orders-service/
+├── helm/                     
 ├── README.md
+├── .gitignore
 └── terraform/
-		├── environments/
-		│   └── dev/
-		│       ├── backend.tf
-		│       ├── main.tf
-		│       ├── outputs.tf
-		│       └── variables.tf
-		└── modules/
-				├── ecr/
-				├── eks/
-				├── rds/
-				└── vpc/
+	├── environments/
+	│   └── dev/
+	│       ├── backend.tf
+	│       ├── main.tf
+	│       ├── outputs.tf
+	│       └── variables.tf
+	└── modules/
+		├── ecr/
+		├── eks/
+		├── github-oidc/        
+		├── rds/
+		└── vpc/
 ```
 
 `terraform/environments/dev/main.tf` composes the modules and passes their dependencies through outputs:
