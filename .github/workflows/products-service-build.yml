@@ -1,4 +1,4 @@
-name: Build an Push users-service to ECR
+name: Build an Push products-service to ECR
 
 on:
   push:
@@ -6,14 +6,14 @@ on:
       - master
       - feature/**
     paths:
-      - 'apps/users-service/**'
-      - '.github/workflows/users-service.build.yaml'
+      - 'apps/products-service/**'
+      - '.github/workflows/products-service.build.yaml'
   workflow_dispatch:
 
 env:
   AWS_REGION: us-east-1
-  ECR_REPOSITORY: dev-users-service
-  SERVICE_NAME: users-service
+  ECR_REPOSITORY: dev-products-service
+  SERVICE_NAME: products-service
 
 jobs:
   build-and-push:
