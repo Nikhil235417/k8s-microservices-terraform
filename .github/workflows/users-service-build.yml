@@ -3,7 +3,7 @@ name: Build an Push users-service to ECR
 on:
   push:
     branches:
-      - feature/*
+      - master
     paths:
       - 'apps/users-service/**'
       - '.github/workflows/users-service.build.yaml'
