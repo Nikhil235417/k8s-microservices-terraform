@@ -180,23 +180,38 @@ The database is created with identifier `dev-postgres-db`, logical name `app_db`
 
 `skip_final_snapshot = true` makes it easier to destroy the development environment, but it is not suitable for production because it allows the instance to be deleted without a final snapshot.
 
+
 ## Repository structure
+
+The repository layout (current) is:
 
 ```text
 .
+├── .github/
+│   └── workflows/
+│       ├── users-service-build.yml
+│       ├── products-service-build.yml
+│       └── orders-service-build.yml
+├── apps/
+│   ├── users-service/
+│   ├── products-service/
+│   └── orders-service/
+├── helm/                     
 ├── README.md
+├── .gitignore
 └── terraform/
-		├── environments/
-		│   └── dev/
-		│       ├── backend.tf
-		│       ├── main.tf
-		│       ├── outputs.tf
-		│       └── variables.tf
-		└── modules/
-				├── ecr/
-				├── eks/
-				├── rds/
-				└── vpc/
+	├── environments/
+	│   └── dev/
+	│       ├── backend.tf
+	│       ├── main.tf
+	│       ├── outputs.tf
+	│       └── variables.tf
+	└── modules/
+		├── ecr/
+		├── eks/
+		├── github-oidc/        
+		├── rds/
+		└── vpc/
 ```
 
 `terraform/environments/dev/main.tf` composes the modules and passes their dependencies through outputs:
