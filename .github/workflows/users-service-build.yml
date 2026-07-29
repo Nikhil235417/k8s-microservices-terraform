@@ -1,4 +1,4 @@
-name: Build an Push users-service to ECR
+name: Build an Push Users-Service to ECR
 
 on:
   push:

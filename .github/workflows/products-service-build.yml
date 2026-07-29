@@ -1,4 +1,4 @@
-name: Build an Push products-service to ECR
+name: Build an Push Products-Service to ECR
 
 on:
   push:
