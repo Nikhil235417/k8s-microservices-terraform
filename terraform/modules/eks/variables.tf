@@ -24,13 +24,13 @@ variable "node_instance_type" {
 variable "node_desired_size" {
   description = "The desired number of nodes in the EKS node group."
   type        = number
-  default     = 2
+  default     = 3
 }
 
 variable "node_max_size" {
   description = "The maximum number of nodes in the EKS node group."
   type        = number
-  default     = 3
+  default     = 4
 }
 
 variable "node_min_size" {
