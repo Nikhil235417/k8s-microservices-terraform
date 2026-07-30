@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - feature/**
     paths:
       - 'apps/products-service/**'
       - '.github/workflows/products-service.build.yaml'
@@ -72,7 +71,7 @@ jobs:
             echo "Changes detected. Proceeding with the commit."
             git add values.yaml
             git commit -m "chore(products-service): update image tag to ${{ github.sha }}"
-            git push origin HEAD:feature/develop
+            git push origin HEAD:master
           else
             echo "No Changes for do the Commmit. The values.yaml file already contains this tag, or the 'sed' command did not find any matches."
             exit 1
