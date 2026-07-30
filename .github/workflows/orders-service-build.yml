@@ -68,7 +68,11 @@ jobs:
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
 
-          git add values.yaml
-          git commit -m "chore(orders-service): update image tag to ${{ github.sha }}"
-          git push origin HEAD:feature/develop
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "Changes detected. Proceeding with the commit."
+            git add values.yaml
+            git commit -m "chore(orders-service): update image tag to ${{ github.sha }}"
+            git push origin HEAD:feature/develop
+          else
+            echo "No Changes for do the Commmit. The values.yaml file already contains this tag, or the 'sed' command did not find any matches."
     
