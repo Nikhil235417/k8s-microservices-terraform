@@ -18,7 +18,7 @@ variable "private_subnet_ids" {
 variable "node_instance_type" {
   description = "The instance type for the EKS node group."
   type        = list(string)
-  default     = ["t3.micro"]
+  default     = ["t3.small"]
 }
 
 variable "node_desired_size" {
