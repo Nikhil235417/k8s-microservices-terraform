@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     permissions:
-      contents: read
+      contents: write
       id-token: write
 
     steps:
@@ -60,3 +60,20 @@ jobs:
         run: |
           echo "Docker image pushed to ECR: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}"
     
+      - name: Update Helm values.yaml with new image tag
+        run: |
+          cd helm/microservices
+          yq -i '."products-service".image.tag = "${{ github.sha }}"' values.yaml
+
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "Changes detected. Proceeding with the commit."
+            git add values.yaml
+            git commit -m "chore(products-service): update image tag to ${{ github.sha }}"
+            git push origin HEAD:feature/develop
+          else
+            echo "No Changes for do the Commmit. The values.yaml file already contains this tag, or the 'sed' command did not find any matches."
+            exit 1
+          fi
