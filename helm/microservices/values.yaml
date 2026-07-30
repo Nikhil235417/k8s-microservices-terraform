@@ -1,1 +1,12 @@
-# Shared values for all microservices
+orders-service:
+  image:
+    repository: 490059499947.dkr.ecr.us-east-1.amazonaws.com/dev-orders-service
+    tag: e3ff4aaaed660903911b1ec1d21d35fddc3d598f
+products-service:
+  image:
+    repository: 490059499947.dkr.ecr.us-east-1.amazonaws.com/dev-products-service
+    tag: 943d676fd09023769af52f7cf3c67ad484bd9696
+users-service:
+  image:
+    repository: 490059499947.dkr.ecr.us-east-1.amazonaws.com/dev-users-service
+    tag: 04fbf96ed9abf4b0ebceb89aa4cc67c39ab3f015
