@@ -28,7 +28,7 @@ resource "aws_subnet" "public_subnet_1" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "dev-public-subnet-1"
+    Name = "${var.environment}-public-subnet-1"
   }
 }
 
