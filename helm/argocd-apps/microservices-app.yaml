@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/robpalacios1/k8s-microservices-terraform.git
     targetRevision: master
-    path: helm/microservices-app.yaml
+    path: helm/argocd-apps/microservices-app.yaml
 
   destination:
     server: https://kubernetes.default.svc
