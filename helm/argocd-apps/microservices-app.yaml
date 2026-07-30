@@ -8,7 +8,7 @@ spec:
 
   source:
     repoURL: https://github.com/robpalacios1/k8s-microservices-terraform.git
-    targetRevision: master
+    targetRevision: feature/*
     path: helm/argocd-apps/microservices-app.yaml
 
   destination:
