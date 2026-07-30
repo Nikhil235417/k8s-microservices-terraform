@@ -5,7 +5,7 @@ orders-service:
 products-service:
   image:
     repository: 490059499947.dkr.ecr.us-east-1.amazonaws.com/dev-products-service
-    tag: 79316c4fc34178e567d1e130fce3dad4e4d40f05
+    tag: 943d676fd09023769af52f7cf3c67ad484bd9696
 users-service:
   image:
     repository: 490059499947.dkr.ecr.us-east-1.amazonaws.com/dev-users-service
