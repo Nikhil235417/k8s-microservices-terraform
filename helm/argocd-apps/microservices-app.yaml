@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: microservices-app
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/robpalacios1/k8s-microservices-terraform.git
+    targetRevision: master
+    path: helm/argocd-apps/microservices-app.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
