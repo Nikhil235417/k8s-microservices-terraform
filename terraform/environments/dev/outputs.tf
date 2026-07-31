@@ -31,4 +31,10 @@ output "rds_endpoint" {
   description = "RDS Endpoint"
   value     = module.rds.db_endpoint
   sensitive = false
-}   
+}
+
+#ALB Controller
+output "alb_controller_role_arn" {
+  description = "IAM Role ARN for ALB Controller"
+  value       = module.alb_controller.role_arn
+}
