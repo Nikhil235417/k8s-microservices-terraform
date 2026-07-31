@@ -25,3 +25,9 @@ module "rds" {
   private_subnets_ids = module.vpc.private_subnets_ids
   db_password         = var.db_password
 }
+
+module "alb_controller" {
+  source              = "../../modules/alb-controller"
+  cluster_name        = "dev-eks-cluster"
+  eks_oidc_issuer_url = module.eks.cluster_oidc_issuer_url
+}
