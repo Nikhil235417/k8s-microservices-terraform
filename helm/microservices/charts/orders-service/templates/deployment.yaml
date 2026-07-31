@@ -18,6 +18,9 @@ spec:
         - name: orders-service
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - secretRef:
+                name: rds-credentials
           ports:
             - containerPort: {{ .Values.service.targetPort }}
           livenessProbe:
