@@ -9,4 +9,4 @@ products-service:
 users-service:
   image:
     repository: 490059499947.dkr.ecr.us-east-1.amazonaws.com/dev-users-service
-    tag: 95ab55bdbab17fbe507e1f30a97e6425e41a368e
+    tag: 2dbdf97455b9a20b0e3fdf7226a5f292cb847a45
