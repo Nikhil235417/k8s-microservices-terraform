@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from prometheus_fastapi_instrumentator import Instrumentator
 from sqlalchemy import create_engine, text
