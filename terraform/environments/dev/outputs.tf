@@ -15,6 +15,11 @@ output "eks_cluster_id" {
   value = module.eks.cluster_id
 }
 
+output "eks_cluster_oidc_issuer_url" {
+  description = "URL from emisor OIDC of cluster EKS"
+  value = module.eks.cluster_oidc_issuer_url
+}
+
 #ECR
 output "ecr_repository_urls" {
   description = "ECR Repository URL"
