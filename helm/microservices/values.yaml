@@ -1,12 +1,14 @@
 orders-service:
   image:
-    repository: 490059499947.dkr.ecr.us-east-1.amazonaws.com/dev-orders-service
-    tag: 6ce5718737e09308ba4ebfe71c4aed0cb39d6a5e
+    repository: 013545650432.dkr.ecr.us-east-1.amazonaws.com/dev-orders-service
+    tag: latest
+
 products-service:
   image:
-    repository: 490059499947.dkr.ecr.us-east-1.amazonaws.com/dev-products-service
-    tag: 5c33af109b178dbdd12c3c970caadaaee3580c48
+    repository: 013545650432.dkr.ecr.us-east-1.amazonaws.com/dev-products-service
+    tag: latest
+
 users-service:
   image:
-    repository: 490059499947.dkr.ecr.us-east-1.amazonaws.com/dev-users-service
-    tag: 70a2226b443201c988e35c4c26ba5d1394257f1a
+    repository: 013545650432.dkr.ecr.us-east-1.amazonaws.com/dev-users-service
+    tag: latest
