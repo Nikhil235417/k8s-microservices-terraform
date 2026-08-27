@@ -1,7 +1,7 @@
 image:
-  repository: 490059499947.dkr.ecr.us-east-1.amazonaws.com/dev-products-service
-  tag: v1
-  pullPolicy: IfNotPresent
+  repository: 013545650432.dkr.ecr.us-east-1.amazonaws.com/dev-products-service
+  tag: latest
+  
 
 replicaCount: 1
 
