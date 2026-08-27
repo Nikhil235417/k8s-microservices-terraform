@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/robpalacios1/k8s-microservices-terraform.git
+    repoURL: https://github.com/robpalacios1/k8s-microservices-terraform.git 
     targetRevision: master
     path: helm/microservices
 
@@ -21,3 +21,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+
